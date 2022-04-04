@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/mpicpp-targets.cmake")
+
+check_required_components(mpicpp)
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(MPI COMPONENTS CXX)
