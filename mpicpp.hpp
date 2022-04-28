@@ -3,6 +3,7 @@
 #include <mpi.h>
 
 #include <string>
+#include <cstddef>
 
 namespace mpicpp {
 
