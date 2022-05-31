@@ -373,7 +373,7 @@ class comm {
   constexpr MPI_Comm get() const { return implementation; }
 };
 
-class environment {
+class [[nodiscard]] environment {
  public:
   environment(int* argc, char*** argv);
   environment()
