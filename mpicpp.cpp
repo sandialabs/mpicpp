@@ -11,6 +11,11 @@ exception::exception(int errorcode)
   error_string = c_error_string;
 }
 
+exception::exception(const char* msg)
+{
+  error_string = msg;
+}
+
 const char* exception::what() const noexcept {
   return error_string.c_str();
 }
@@ -23,6 +28,24 @@ void handle_error(int errorcode) {
 status::status(MPI_Status implementation_arg)
   :implementation(implementation_arg)
 {}
+
+request::request(request const& other)
+{
+  if (other.implementation != MPI_REQUEST_NULL) {
+    throw exception("tried to copy construct from a non-null mpicpp::request object");
+  }
+  implementation = other.implementation;
+}
+
+request& request::operator=(request const& other)
+{
+  if (other.implementation != MPI_REQUEST_NULL) {
+    throw exception("tried to copy assign from a non-null mpicpp::request object");
+  }
+  wait();
+  implementation = other.implementation;
+  return *this;
+}
 
 request& request::operator=(request&& other)
 {

@@ -11,6 +11,7 @@ class exception : public std::exception {
   std::string error_string;
  public:
   exception(int errorcode);
+  exception(const char* msg);
   const char* what() const noexcept override;
 };
 
@@ -32,11 +33,11 @@ class request {
   request()
     :implementation(MPI_REQUEST_NULL)
   {}
-  constexpr request(MPI_Request implementation_arg)
+  explicit constexpr request(MPI_Request implementation_arg)
     :implementation(implementation_arg)
   {}
-  request(request const&) = delete;
-  request& operator=(request const&) = delete;
+  request(request const& other);
+  request& operator=(request const& other);
   constexpr request(request&& other) noexcept
     :implementation(other.implementation)
   {
