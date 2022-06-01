@@ -32,7 +32,7 @@ status::status(MPI_Status implementation_arg)
 request::request(request const& other)
 {
   if (other.implementation != MPI_REQUEST_NULL) {
-    throw exception("tried to copy construct from a non-null mpicpp::request object");
+    throw std::logic_error("tried to copy construct from a non-null mpicpp::request object");
   }
   implementation = other.implementation;
 }
