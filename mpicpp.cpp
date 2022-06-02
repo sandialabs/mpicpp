@@ -1,5 +1,7 @@
 #include "mpicpp.hpp"
 
+#include <stdexcept>
+
 namespace mpicpp {
 
 exception::exception(int errorcode)

@@ -4,6 +4,7 @@
 
 #include <string>
 #include <cstddef>
+#include <exception>
 
 namespace mpicpp {
 
